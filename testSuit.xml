@@ -1,0 +1,7 @@
+<suite name="TestSuite" thread-count="3" parallel="methods">
+    <test name="myTests">
+        <classes>
+            <class name = "com.iyfinproj.test.tests.TestProject"/>
+        </classes>
+    </test>
+</suite>
