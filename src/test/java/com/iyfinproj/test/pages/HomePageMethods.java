@@ -1,5 +1,6 @@
 package com.iyfinproj.test.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -33,6 +34,7 @@ public class HomePageMethods {
         }
     }
 
+    @Step("Select language from the dropdown")
     public HomePageMethods selectLanguage(Language lang) throws InterruptedException {
 
         Select langSelect = new Select(getDriver().findElement(DROPDOWN_SELECT_LANGUAGE));
@@ -40,6 +42,7 @@ public class HomePageMethods {
         return this;
     }
 
+    @Step("Switch to the 'Electronics' page")
     public ElectronicsPageMethods goToElectronicsPage() {
 
         Actions actions = new Actions(getDriver());
@@ -53,6 +56,7 @@ public class HomePageMethods {
         return new ElectronicsPageMethods();
     }
 
+    @Step("Switch to the 'Login' page")
     public AccountPageMethods goToLoginPage() {
         WebElement logButton = getDriver().findElement(BUTTON_ACCOUNT);
         logButton.click();
@@ -63,6 +67,7 @@ public class HomePageMethods {
         return new AccountPageMethods();
     }
 
+    @Step("Switch to the 'Sale' page")
     public SalePageMethods goToSalePage() {
 
         WebElement saleElement = new WebDriverWait(getDriver(), 10)

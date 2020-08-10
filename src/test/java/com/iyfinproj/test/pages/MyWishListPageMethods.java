@@ -1,5 +1,6 @@
 package com.iyfinproj.test.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,9 +17,9 @@ public class MyWishListPageMethods {
 
     public MyWishListPageMethods setElementName(String elementName) {
         ElementName = elementName;
-
         return  this;
     }
+
 
     public String getElementName() {
         return ElementName;
@@ -26,6 +27,7 @@ public class MyWishListPageMethods {
 
     private String ElementName;
 
+    @Step("check if the 'Wish' page is shown")
     public MyWishListPageMethods checkIfMyWishPageIsShown() {
         List<WebElement> myWishListPage = new WebDriverWait(getDriver(), 5)
                 .until(ExpectedConditions.presenceOfAllElementsLocatedBy(PAGE_MY_WISH_LIST_TITLE));
@@ -34,6 +36,7 @@ public class MyWishListPageMethods {
         return this;
     }
 
+    @Step("Verify if name of chosen item is presented")
     public MyWishListPageMethods checkIfNameOfChosenItemIsPresent() {
         WebElement prodName = new WebDriverWait(getDriver(),5)
                 .until(ExpectedConditions.presenceOfElementLocated(PRODUCT_NAME));

@@ -1,6 +1,7 @@
 package com.iyfinproj.test.pages;
 
 import com.iyfinproj.test.CommonUtils;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -14,6 +15,7 @@ public class CreateAccountPageMethods {
     private static final By INPUT_FIELD_CONFIRMATION = By.xpath("//input[@id='confirmation']");
     private static final By BUTTON_REGISTER = By.xpath("//button[@title='Register']");
 
+    @Step("Fill in the register form")
     public DashboardPageMethods registerUser()  {
 
         WebElement firstName = getDriver().findElement(INPUT_FIELD_FIRST_NAME);

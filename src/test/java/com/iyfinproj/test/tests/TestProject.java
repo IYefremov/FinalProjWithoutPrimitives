@@ -1,25 +1,18 @@
 package com.iyfinproj.test.tests;
-
-import static com.iyfinproj.test.pages.HomePageMethods.Language.AUTO;
 import static com.iyfinproj.test.pages.HomePageMethods.Language.ENG;
-
 import com.iyfinproj.test.pages.HomePageMethods;
-
 import com.iyfinproj.test.pages.MyWishListPageMethods;
 import com.iyfinproj.test.pages.ShoppingCartPageMethods;
 import com.iyfinproj.test.prodtransition.Product;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TestProject extends BaseTest {
+    HomePageMethods.Language language = ENG;
 
     @Test(invocationCount = 1)
     public void checkItemsCounter() throws InterruptedException {
         new HomePageMethods()
-                .selectLanguage(ENG)
+                .selectLanguage(language)
                 .goToElectronicsPage()
                 .clickAsListButton()
                 .setItemsPerPage("25")
@@ -29,7 +22,7 @@ public class TestProject extends BaseTest {
     @Test(invocationCount = 1)
     public void checkShowSelect() throws InterruptedException {
         new HomePageMethods()
-                .selectLanguage(ENG)
+                .selectLanguage(language)
                 .goToElectronicsPage()
                 .clickAsListButton()
                 .setItemsPerPage("5")
@@ -39,7 +32,7 @@ public class TestProject extends BaseTest {
     @Test(invocationCount = 1)
     public void checkSortBy() throws InterruptedException {
         new HomePageMethods()
-                .selectLanguage(ENG)
+                .selectLanguage(language)
                 .goToElectronicsPage()
                 .clickAsListButton()
                 .setItemsPerPage("25")
@@ -50,7 +43,7 @@ public class TestProject extends BaseTest {
     @Test(invocationCount = 1)
     public void checkPriceFilter() throws InterruptedException {
         new HomePageMethods()
-                .selectLanguage(ENG)
+                .selectLanguage(language)
                 .goToElectronicsPage()
                 .clickAsListButton()
                 .setItemsPerPage("25")
@@ -61,7 +54,7 @@ public class TestProject extends BaseTest {
     @Test(invocationCount = 1)
     public void checkAddToWishList() throws InterruptedException {
         String wishName = new HomePageMethods()
-                .selectLanguage(ENG)
+                .selectLanguage(language)
                 .goToLoginPage()
                 .goToAccountForm()
                 .registerUser()
@@ -78,7 +71,7 @@ public class TestProject extends BaseTest {
     @Test(invocationCount = 1)
     public void CheckSale() throws InterruptedException {
         new HomePageMethods()
-                .selectLanguage(ENG)
+                .selectLanguage(language)
                 .goToSalePage()
                 .clickGridButton()
                 .setItemsPerPage("36")
@@ -88,7 +81,7 @@ public class TestProject extends BaseTest {
     @Test(invocationCount = 1)
     public void checkShoppingCart() throws InterruptedException {
         Product item = new HomePageMethods()
-                .selectLanguage(ENG)
+                .selectLanguage(language)
                 .goToLoginPage()
                 .goToAccountForm()
                 .registerUser()

@@ -2,7 +2,7 @@ package com.iyfinproj.test.pages;
 
 import com.iyfinproj.test.CommonUtils;
 import com.iyfinproj.test.prodtransition.Product;
-import com.sun.org.apache.xerces.internal.xs.StringList;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -32,6 +32,7 @@ public class ElectronicsPageMethods {
     private static final String XPATH_ELEMENT_NAME_LOCATOR_BY_INDEX = "//ul[@class='products-grid products-grid--max-4-col first last odd']/li[%s]//h2[@class='product-name']";
     private static final String XPATH_ELEMENT_PRICE_LOCATOR_BY_INDEX = "//ul[@class='products-grid products-grid--max-4-col first last odd']/li[%s]//span[@class='price']";
 
+    @Step("Click 'As List' button")
     public ElectronicsPageMethods clickAsListButton() {
         WebElement asListWebElement = new WebDriverWait(getDriver(), 10)
                 .until(ExpectedConditions.presenceOfElementLocated(BUTTON_SHOW_AS_LIST));
@@ -40,6 +41,7 @@ public class ElectronicsPageMethods {
         return this;
     }
 
+    @Step("Set items per Page")
     public ElectronicsPageMethods setItemsPerPage(String perPageItems) {
         Select selectItemsPerPage = new Select(getDriver().findElement(DROPDOWN_SELECT_ITEMS_PER_PAGE));
         selectItemsPerPage.selectByVisibleText(perPageItems);
@@ -47,6 +49,7 @@ public class ElectronicsPageMethods {
         return this;
     }
 
+    @Step("Verify page counter value is equal to the quantity of loaded items ")
     public ElectronicsPageMethods checkCountLoadedItemsIsEquaulToPageCounter() throws InterruptedException {
         new WebDriverWait(getDriver(), 10).until(
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
@@ -59,6 +62,7 @@ public class ElectronicsPageMethods {
 
     }
 
+    @Step("Getting the value of page counter")
     public static int getValueOfPageCounter() {
         WebElement counter = new WebDriverWait(getDriver(), 10)
                 .until(ExpectedConditions.presenceOfElementLocated(COUNTER));
@@ -66,6 +70,7 @@ public class ElectronicsPageMethods {
         return CommonUtils.getIntFromString(counterStr);
     }
 
+    @Step("Checking the quantity of items per page")
     public ElectronicsPageMethods checkQuantityOfItemsPerPage(int mustBeQuantity) {
 
         int elementsQuantity = 0;
@@ -93,12 +98,14 @@ public class ElectronicsPageMethods {
         return this;
     }
 
+    @Step("Set the 'Sort By' filter")
     public ElectronicsPageMethods selectPriceInSortBySelection(String value) {
         Select sortBy = new Select(getDriver().findElement(DROPDOWN_SORTBY));
         sortBy.selectByVisibleText(value);
         return this;
     }
 
+    @Step("Verify if price of each next item higher than previous one")
     public ElectronicsPageMethods checkIfPriceOfEachNextItemHigherThanPrevious() {
 
         double amountOfCurrentElement;
@@ -120,6 +127,7 @@ public class ElectronicsPageMethods {
         return this;
     }
 
+    @Step("Set filter in price section")
     public ElectronicsPageMethods setFilterInPriceSection() {
         WebElement shopByPrice = getDriver().findElement(SHOP_BY_PRICE);
         shopByPrice.click();
@@ -139,6 +147,7 @@ public class ElectronicsPageMethods {
         return this;
     }
 
+    @Step ("Get name of goods from Wish ")
     public String getWishName() {
 
         new WebDriverWait(getDriver(), 10).until(
@@ -162,6 +171,7 @@ public class ElectronicsPageMethods {
         return chosenName;
     }
 
+    @Step("Click the 'Grid' button")
     public ElectronicsPageMethods clickGridButton() {
         WebElement gridButton = getDriver().findElement(BUTTON_GRID);
         gridButton.click();
@@ -169,6 +179,7 @@ public class ElectronicsPageMethods {
         return this;
     }
 
+    @Step("Getting name and price of random element")
     public Product getNameAndPriceOfRandomElement() throws InterruptedException {
 
         int randomElementNumber;
@@ -211,9 +222,3 @@ public class ElectronicsPageMethods {
         return item;
     }
 }
-
-
-//ul[@class='products-grid products-grid--max-4-col first last odd']/li[1]//h2[@class='product-name']
-//ul[@class='products-grid products-grid--max-4-col first last odd']//li[1]//span[@class='price']
-//ul[@class='products-grid products-grid--max-4-col first last odd']//li[2]//p[@class='price-from']//span[@class='price']
-//ul[@class='products-grid products-grid--max-4-col first last odd']/li[1]//button[@title='Add to Cart']

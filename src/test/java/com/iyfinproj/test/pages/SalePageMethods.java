@@ -2,6 +2,7 @@ package com.iyfinproj.test.pages;
 
 import com.iyfinproj.test.CommonUtils;
 import com.iyfinproj.test.prodtransition.Product;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,6 +23,7 @@ public class SalePageMethods {
     private static final By SALE_PRODUCT_LIST = By.xpath("//div[@class='product-info']");
     private static final By PRODUCT_NAMЕ = By.xpath(" //h2[@class='product-name']");
 
+    @Step
     public SalePageMethods clickGridButton() {
         WebElement gridButton = new WebDriverWait(getDriver(), 10)
                 .until(ExpectedConditions.presenceOfElementLocated(BUTTON_GRID));
@@ -29,12 +31,14 @@ public class SalePageMethods {
         return this;
     }
 
+    @Step
     public SalePageMethods setItemsPerPage(String perPageItems) {
         Select selectItemsPerPage = new Select(getDriver().findElement(DROPDOWN_SELECT_ITEMS_PER_PAGE));
         selectItemsPerPage.selectByVisibleText(perPageItems);
         return this;
     }
 
+    @Step("Verify the old price is higher than the sale price")
     public SalePageMethods checkOldPriceHigherThanSalePriceForEachItem() {
         List<WebElement> listOfItems = new WebDriverWait(getDriver(), 10).until(
                 ExpectedConditions.presenceOfAllElementsLocatedBy(SALE_PRODUCT_LIST));

@@ -2,6 +2,7 @@ package com.iyfinproj.test.pages;
 
 import com.iyfinproj.test.CommonUtils;
 import com.iyfinproj.test.prodtransition.Product;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,6 +18,7 @@ public class ShoppingCartPageMethods {
     private static final By SUBTOTAL = By.xpath("//tbody//td[@class='a-right']//span[@class='price']");
     private static final By TOTAL = By.xpath("//tfoot//td[@class='a-right']//span[@class='price']");
 
+    @Step("Verify the 'Shopping Cart' page is displayed")
     public ShoppingCartPageMethods checkIfShoppingCartPageIsShown() {
         WebElement myWishListPage = new WebDriverWait(getDriver(), 5)
                 .until(ExpectedConditions.presenceOfElementLocated(PAGE_SHOPPING_CART_TITLE));
@@ -25,7 +27,7 @@ public class ShoppingCartPageMethods {
 
         return this;
     }
-
+    @Step("Verify the name and price of chosen element is presented")
     public ShoppingCartPageMethods checkIfNameAndPriceOfChosenItemIsPresent(Product prod) {
         WebElement prodName = new WebDriverWait(getDriver(), 5)
                 .until(ExpectedConditions.presenceOfElementLocated(NAME_IN_SHOPPING_CART));
@@ -40,6 +42,7 @@ public class ShoppingCartPageMethods {
         return this;
     }
 
+    @Step("Verify the grand total amount is equal to the subtotal")
     public ShoppingCartPageMethods checkGrandTotalAmountIsEqualToTheSubtotal() {
         WebElement subtotal = getDriver().findElement(SUBTOTAL);
         WebElement total = getDriver().findElement(TOTAL);

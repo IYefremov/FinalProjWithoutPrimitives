@@ -1,5 +1,6 @@
 package com.iyfinproj.test.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,6 +12,7 @@ public class AccountPageMethods {
     private static final By BUTTON_CREATE_ACCOUNT = By.cssSelector("a[title='Create an Account']");
     private static final By BUTTON_INSIDE_SMALL_CREATEACCOUNT_BUTTON = By.xpath("//img[@alt='close']");
 
+    @Step("Click Create Account Button")
     public CreateAccountPageMethods goToAccountForm(){
 
         WebElement insideCloseButt = new WebDriverWait(getDriver(), 5)
