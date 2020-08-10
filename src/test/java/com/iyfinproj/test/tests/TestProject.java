@@ -19,7 +19,7 @@ public class TestProject extends BaseTest {
     @Test(invocationCount = 1)
     public void checkItemsCounter() throws InterruptedException {
         new HomePageMethods()
-                .selectLanguage(AUTO)
+                .selectLanguage(ENG)
                 .goToElectronicsPage()
                 .clickAsListButton()
                 .setItemsPerPage("25")
@@ -29,7 +29,7 @@ public class TestProject extends BaseTest {
     @Test(invocationCount = 1)
     public void checkShowSelect() throws InterruptedException {
         new HomePageMethods()
-                .selectLanguage(AUTO)
+                .selectLanguage(ENG)
                 .goToElectronicsPage()
                 .clickAsListButton()
                 .setItemsPerPage("5")
@@ -39,7 +39,7 @@ public class TestProject extends BaseTest {
     @Test(invocationCount = 1)
     public void checkSortBy() throws InterruptedException {
         new HomePageMethods()
-                .selectLanguage(AUTO)
+                .selectLanguage(ENG)
                 .goToElectronicsPage()
                 .clickAsListButton()
                 .setItemsPerPage("25")
@@ -50,7 +50,7 @@ public class TestProject extends BaseTest {
     @Test(invocationCount = 1)
     public void checkPriceFilter() throws InterruptedException {
         new HomePageMethods()
-                .selectLanguage(AUTO)
+                .selectLanguage(ENG)
                 .goToElectronicsPage()
                 .clickAsListButton()
                 .setItemsPerPage("25")
@@ -61,7 +61,7 @@ public class TestProject extends BaseTest {
     @Test(invocationCount = 1)
     public void checkAddToWishList() throws InterruptedException {
         String wishName = new HomePageMethods()
-                .selectLanguage(AUTO)
+                .selectLanguage(ENG)
                 .goToLoginPage()
                 .goToAccountForm()
                 .registerUser()
@@ -78,7 +78,7 @@ public class TestProject extends BaseTest {
     @Test(invocationCount = 1)
     public void CheckSale() throws InterruptedException {
         new HomePageMethods()
-                .selectLanguage(AUTO)
+                .selectLanguage(ENG)
                 .goToSalePage()
                 .clickGridButton()
                 .setItemsPerPage("36")
@@ -88,7 +88,7 @@ public class TestProject extends BaseTest {
     @Test(invocationCount = 1)
     public void checkShoppingCart() throws InterruptedException {
         Product item = new HomePageMethods()
-                .selectLanguage(AUTO)
+                .selectLanguage(ENG)
                 .goToLoginPage()
                 .goToAccountForm()
                 .registerUser()

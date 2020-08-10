@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,9 +23,9 @@ public class Driver {
     }
 
 
-    private static void init() {
+    private static synchronized void init() {
 
-        String browser = System.getProperty("browser", "chrome");
+        String browser = System.getProperty("browser", "ie");
 
         switch(browser){
             case "chrome" :
@@ -35,12 +36,19 @@ public class Driver {
                 WebDriverManager.firefoxdriver().setup();
                 driver.set(new FirefoxDriver());
                 break;
+            case "ie":
+                WebDriverManager.iedriver().setup();
+                driver.set(new InternetExplorerDriver());
+                break;
+            default:
+                throw new IllegalArgumentException(String.format("%s isn't recognized", browser));
         }
         driver.get().manage().deleteAllCookies();
         driver.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get().manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         //driver.manage().window().maximize();
         driver.get().get(ProjectConstants.url);
+
     }
 
     public static void quit() {
@@ -48,8 +56,6 @@ public class Driver {
             driver.get().close();
             driver.remove();
         }
-//        driver.quit();
-//        driver = null;
     }
 
 }
