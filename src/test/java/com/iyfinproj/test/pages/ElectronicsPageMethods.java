@@ -1,6 +1,7 @@
 package com.iyfinproj.test.pages;
 
 import com.iyfinproj.test.CommonUtils;
+import com.iyfinproj.test.prodtransition.Product;
 import com.sun.org.apache.xerces.internal.xs.StringList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -9,19 +10,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static com.iyfinproj.test.Driver.getDriver;
 
 public class ElectronicsPageMethods {
-    private static final By BUTTON_SHOW_AS_LIST = By.xpath("//html[@id='top']/body/div[@class='wrapper']/div[@class='page']/div[2]/div[@class='main']//div[@class='category-products']/div[@class='toolbar']/div[@class='sorter']/p[@class='view-mode']/a[@title='List']");
+    private static final By BUTTON_SHOW_AS_LIST = By.xpath("//a[@class='list']");
     private static final By DROPDOWN_SELECT_ITEMS_PER_PAGE = By.xpath("//select[@title='Results per page']");
     private static final By PRODUCT_LIST = By.xpath("//ol[@id='products-list']/li");
     private static final By COUNTER = By.xpath("//div[@class='toolbar']//strong[contains(text(),'Item')]");
-    private static final By BUTTON_NEXT_PAGE = By.xpath("//html[@id='top']/body/div[@class='wrapper']/div[@class='page']/div[2]/div[@class='main']//div[@class='category-products']/div[@class='toolbar']/div[@class='pager']/div[@class='pages']/ol//a[@title='Next']");
+    private static final By BUTTON_NEXT_PAGE = By.xpath("//a[@class='next i-next']");
     private static final By DROPDOWN_SORTBY = By.cssSelector(".category-products > .toolbar select[title='Sort By']");
     private static final By PRICE_OF_GOODS = By.cssSelector(".product-shop .price-from > .price, .regular-price > .price");
     private static final By SHOP_BY_PRICE = By.xpath("//*[@id='narrow-by-list']//li[1]");
@@ -171,7 +169,7 @@ public class ElectronicsPageMethods {
         return this;
     }
 
-    public List<String> getNameAndPriceOfRandomElement() throws InterruptedException {
+    public Product getNameAndPriceOfRandomElement() throws InterruptedException {
 
         int randomElementNumber;
 
@@ -204,13 +202,13 @@ public class ElectronicsPageMethods {
         WebElement randomElementPrice = new WebDriverWait(getDriver(), 5)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format(XPATH_ELEMENT_PRICE_LOCATOR_BY_INDEX, randomElementNumber))));
 
-        ArrayList<String> nameAndPriceOfSelectedItem = new ArrayList<>();
-        nameAndPriceOfSelectedItem.add(randomElementName.getText());
-        nameAndPriceOfSelectedItem.add(randomElementPrice.getText());
+        Product item = Product.builder()
+                .newPrice(CommonUtils.getDoubleFromString(randomElementPrice.getText()))
+                .name(randomElementName.getText())
+                .build();
 
         randomElementAddToCartButton.click();
-
-        return nameAndPriceOfSelectedItem;
+        return item;
     }
 }
 

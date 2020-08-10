@@ -7,6 +7,7 @@ import com.iyfinproj.test.pages.HomePageMethods;
 
 import com.iyfinproj.test.pages.MyWishListPageMethods;
 import com.iyfinproj.test.pages.ShoppingCartPageMethods;
+import com.iyfinproj.test.prodtransition.Product;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -14,26 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestProject extends BaseTest {
-    @DataProvider
-    public Object[] myDataProvider(){
-        return new Object[]{
-                "Data 1 from my data provider",
-                "Data 2 from my data provider",
-                "Data 3 from my data provider",
-                "Data 4 from my data provider",
-                "Data 5 from my data provider"
-        };
-    }
 
-    @Test(invocationCount = 1, dataProvider = "myDataProvider")
-    public void checkItemsCounter(String value) throws InterruptedException {
+    @Test(invocationCount = 1)
+    public void checkItemsCounter() throws InterruptedException {
         new HomePageMethods()
                 .selectLanguage(AUTO)
                 .goToElectronicsPage()
                 .clickAsListButton()
                 .setItemsPerPage("25")
                 .checkCountLoadedItemsIsEquaulToPageCounter();
-        System.out.println(value);
     }
 
     @Test(invocationCount = 1)
@@ -56,7 +46,6 @@ public class TestProject extends BaseTest {
                 .selectPriceInSortBySelection("Price")
                 .checkIfPriceOfEachNextItemHigherThanPrevious();
     }
-
 
     @Test(invocationCount = 1)
     public void checkPriceFilter() throws InterruptedException {
@@ -86,8 +75,6 @@ public class TestProject extends BaseTest {
                 .checkIfNameOfChosenItemIsPresent();
     }
 
-
-
     @Test(invocationCount = 1)
     public void CheckSale() throws InterruptedException {
         new HomePageMethods()
@@ -100,7 +87,7 @@ public class TestProject extends BaseTest {
 
     @Test(invocationCount = 1)
     public void checkShoppingCart() throws InterruptedException {
-        List<String> item = new HomePageMethods()
+        Product item = new HomePageMethods()
                 .selectLanguage(AUTO)
                 .goToLoginPage()
                 .goToAccountForm()
@@ -109,12 +96,9 @@ public class TestProject extends BaseTest {
                 .clickGridButton()
                 .setItemsPerPage("36")
                 .getNameAndPriceOfRandomElement();
-
         new ShoppingCartPageMethods()
-                .setNameToVerify(item.get(0))
-                .setPriceToVerify(item.get(1))
                 .checkIfShoppingCartPageIsShown()
-                .checkIfNameAndPriceOfChosenItemIsPresent()
+                .checkIfNameAndPriceOfChosenItemIsPresent(item)
                 .checkGrandTotalAmountIsEqualToTheSubtotal();
     }
 }

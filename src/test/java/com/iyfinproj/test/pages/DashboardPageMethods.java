@@ -22,6 +22,5 @@ public class DashboardPageMethods {
         homeAndDecor.click();
 
         return new ElectronicsPageMethods();
-
     }
 }

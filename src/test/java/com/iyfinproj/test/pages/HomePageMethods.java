@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 import static com.iyfinproj.test.Driver.getDriver;
 
 public class HomePageMethods {
@@ -17,7 +16,6 @@ public class HomePageMethods {
     private static final By BUTTON_ACCOUNT = By.cssSelector(".skip-account.skip-link > .label");
     private static final By DROPDOWN_ELEMENT_LOGIN = By.xpath("//a[@title='Log In']");
     private final static By SALE = By.xpath("//a[.='Sale']");
-
 
     public enum Language {
         AUTO("Automation"),

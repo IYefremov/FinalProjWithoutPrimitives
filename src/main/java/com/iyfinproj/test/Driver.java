@@ -24,7 +24,9 @@ public class Driver {
 
     private static void init() {
 
-        switch(ProjectConstants.browserName){
+        String browser = System.getProperty("browser", "chrome");
+
+        switch(browser){
             case "chrome" :
                 WebDriverManager.chromedriver().setup();
                 driver.set(new ChromeDriver());

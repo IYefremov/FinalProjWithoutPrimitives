@@ -17,7 +17,6 @@ public class AccountPageMethods {
                 .until(ExpectedConditions.visibilityOfElementLocated(BUTTON_INSIDE_SMALL_CREATEACCOUNT_BUTTON));
         insideCloseButt.click();
 
-
         WebElement createAccountButton = new WebDriverWait(getDriver(), 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(BUTTON_CREATE_ACCOUNT));
         createAccountButton.click();

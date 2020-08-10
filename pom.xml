@@ -53,6 +53,12 @@
       <artifactId>aspectjweaver</artifactId>
       <version>${aspectj.version}</version>
     </dependency>
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>1.18.8</version>
+          <scope>test</scope>
+      </dependency>
 
 
   </dependencies>
@@ -109,6 +115,7 @@
         </plugin>
 
         <plugin>
+
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${maven-surefire-plugin.version}</version>

@@ -26,7 +26,6 @@ public class MyWishListPageMethods {
 
     private String ElementName;
 
-
     public MyWishListPageMethods checkIfMyWishPageIsShown() {
         List<WebElement> myWishListPage = new WebDriverWait(getDriver(), 5)
                 .until(ExpectedConditions.presenceOfAllElementsLocatedBy(PAGE_MY_WISH_LIST_TITLE));
