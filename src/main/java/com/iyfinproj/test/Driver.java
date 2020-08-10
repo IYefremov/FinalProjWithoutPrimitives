@@ -3,6 +3,7 @@ package com.iyfinproj.test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
@@ -10,12 +11,12 @@ import java.util.concurrent.TimeUnit;
 
 public class Driver {
 
-    private static ThreadLocal<WebDriver> driver =new ThreadLocal<>();
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     private Driver() {
     }
 
-    public static WebDriver  getDriver() {
+    public static WebDriver getDriver() {
         if (driver.get() == null) {
             init();
         }
@@ -25,10 +26,10 @@ public class Driver {
 
     private static synchronized void init() {
 
-        String browser = System.getProperty("browser", "ie");
+        String browser = System.getProperty("browser", "chrome");
 
-        switch(browser){
-            case "chrome" :
+        switch (browser) {
+            case "chrome":
                 WebDriverManager.chromedriver().setup();
                 driver.set(new ChromeDriver());
                 break;
@@ -40,6 +41,9 @@ public class Driver {
                 WebDriverManager.iedriver().setup();
                 driver.set(new InternetExplorerDriver());
                 break;
+            case "edge":
+                WebDriverManager.edgedriver().setup();
+                driver.set(new EdgeDriver());
             default:
                 throw new IllegalArgumentException(String.format("%s isn't recognized", browser));
         }
@@ -52,7 +56,7 @@ public class Driver {
     }
 
     public static void quit() {
-        if(driver.get() != null){
+        if (driver.get() != null) {
             driver.get().close();
             driver.remove();
         }
